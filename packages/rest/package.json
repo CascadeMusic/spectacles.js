@@ -1,5 +1,5 @@
 {
-  "name": "@spectacles/rest",
+  "name": "@cascade-music/rest",
   "version": "0.8.3",
   "description": "The Discord REST client library.",
   "main": "dist/src/index.js",

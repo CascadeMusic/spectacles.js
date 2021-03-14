@@ -77,7 +77,7 @@ export default class Rest extends EventEmitter {
 		Object.defineProperty(this.options, 'token', { enumerable: false });
 	}
 
-	public post(endpoint: string, body: any, options?: Request) {
+	public post<T>(endpoint: string, body: any, options?: Request): Promise<T> {
 		return this.make({
 			method: 'post',
 			endpoint,
@@ -86,7 +86,7 @@ export default class Rest extends EventEmitter {
 		});
 	}
 
-	public get(endpoint: string, options?: Request) {
+	public get<T>(endpoint: string, options?: Request): Promise<T> {
 		return this.make({
 			method: 'get',
 			endpoint,
@@ -94,7 +94,7 @@ export default class Rest extends EventEmitter {
 		});
 	}
 
-	public put(endpoint: string, body: any, options?: Request) {
+	public put<T>(endpoint: string, body: any, options?: Request): Promise<T> {
 		return this.make({
 			method: 'put',
 			endpoint,
@@ -103,7 +103,7 @@ export default class Rest extends EventEmitter {
 		});
 	}
 
-	public delete(endpoint: string, options?: Request) {
+	public delete<T>(endpoint: string, options?: Request): Promise<T> {
 		return this.make({
 			method: 'delete',
 			endpoint,
@@ -111,7 +111,7 @@ export default class Rest extends EventEmitter {
 		});
 	}
 
-	public patch(endpoint: string, body: any, options?: Request) {
+	public patch<T>(endpoint: string, body: any, options?: Request): Promise<T> {
 		return this.make({
 			method: 'patch',
 			endpoint,
@@ -120,7 +120,7 @@ export default class Rest extends EventEmitter {
 		});
 	}
 
-	public make(req: Request): Promise<any> {
+	public make<T>(req: Request): Promise<T> {
 		// configure route and ratelimiter
 		const route = Bucket.makeRoute(req.method ?? 'get', req.endpoint ?? '');
 		let b = this.buckets.get(route);
